@@ -1,13 +1,8 @@
-with payments as(
+select 
+id as payment_id,
+orderid,
+amount
 
-    select 
-        id as payment_id,
-        orderid,
-        amount
+from {{ source('stripe','payment')}}
 
-from `dbt-tutorial.stripe.payment`
-
-)
-
-select * from payments
 
