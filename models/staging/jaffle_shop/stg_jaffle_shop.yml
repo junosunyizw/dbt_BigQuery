@@ -2,19 +2,33 @@ version: 2
 
 models:
   - name: stg_customers
+    description: one unique customer per row
     columns:
       - name: customer_id
+        description: Primary Key for stg_customer
         tests:
           - unique
           - not_null
-              
+      - name: first_name
+        description: customer`s first name
+      - name:  last_name
+        description: customer`s last name
+
   - name: stg_orders
+    description: one order per customer
     columns:
       - name: order_id
+        description: one unique order id per row
         tests:
           - unique
           - not_null
+      - name:  customer_id
+        description:  customer id for stg_orders
+      - name: order_date
+        description: date to put the order
+
       - name: status
+        description: '{{ doc("order_status")}}'
         tests:
           - accepted_values:
               values:
@@ -25,6 +39,7 @@ models:
                 - returned
 
       - name: customer_id
+        description:  customer id for each order id
         tests:
           - relationships:
               field: customer_id

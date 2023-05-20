@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_payments
+    description: one unique payment per row
+    columns:
+      - name: payment_id
+        description: primary key for stg_payments
+        tests:
+          - unique
+          - not_null
+      - name: orderid
+        description: orderid for each payment id
+      - name: amount
+        description:  value of each payment
